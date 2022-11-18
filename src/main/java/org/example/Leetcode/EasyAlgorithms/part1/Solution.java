@@ -12,10 +12,7 @@ import java.util.*;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return l1;
-    }
+public class Solution {
 
     public int[] runningSum(int[] nums) {
         int[] numsOut = new int[nums.length];
