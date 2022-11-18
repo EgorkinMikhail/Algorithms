@@ -8,15 +8,15 @@ public class Solution {
     public static int subtractProductAndSum(int n) {
         String stringNumber = String.valueOf(n);
         String stringNumberSymbol = "";
-        if (n<=0) return 0;
+        if (n <= 0) return 0;
 
         int out = 1;
         for (int i = 0; i < stringNumber.length(); i++) {
-            stringNumberSymbol = stringNumber.substring(i, i+1);
+            stringNumberSymbol = stringNumber.substring(i, i + 1);
             out = out * Integer.parseInt(stringNumberSymbol);
         }
         for (int i = 0; i < stringNumber.length(); i++) {
-            stringNumberSymbol = stringNumber.substring(i, i+1);
+            stringNumberSymbol = stringNumber.substring(i, i + 1);
             out = out - Integer.parseInt(stringNumberSymbol);
         }
         return out;
@@ -26,10 +26,10 @@ public class Solution {
         int[] numsOut = new int[calcNumsOutSize(nums)];
         int countOfAllElements = 0;
         int countOfCurrentElement;
-        for (int i = 0; i < nums.length; i=i+2) {
+        for (int i = 0; i < nums.length; i = i + 2) {
             countOfCurrentElement = 0;
-            for (int j = countOfAllElements; j < nums[i]+countOfAllElements ; j++) {
-                numsOut[j] = nums[i+1];
+            for (int j = countOfAllElements; j < nums[i] + countOfAllElements; j++) {
+                numsOut[j] = nums[i + 1];
                 countOfCurrentElement++;
             }
             countOfAllElements = countOfAllElements + countOfCurrentElement;
@@ -40,7 +40,7 @@ public class Solution {
     private static int calcNumsOutSize(int[] nums) {
         int sizeForOutNums = 0;
 
-        for (int i = 0; i < nums.length; i=i+2) {
+        for (int i = 0; i < nums.length; i = i + 2) {
             sizeForOutNums = sizeForOutNums + nums[i];
         }
         return sizeForOutNums;
@@ -66,11 +66,10 @@ public class Solution {
 
         for (int i = 0; i < arr.size(); i++) {
             for (int j = 0; j < arr.get(i).size(); j++) {
-                if (i==j) {
+                if (i == j) {
                     sumOfFirstDiagonal = sumOfFirstDiagonal + arr.get(i).get(j);
                 }
-                if ((arr.get(i).size()-1-j)==i)
-                {
+                if ((arr.get(i).size() - 1 - j) == i) {
                     sumOfSecondDiagonal = sumOfSecondDiagonal + arr.get(i).get(j);
                 }
             }
@@ -86,39 +85,42 @@ public class Solution {
         List<String> returnList = new ArrayList<>();
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > 0){
+            if (arr[i] > 0) {
                 countOfPositiveElements++;
             }
-            if (arr[i] < 0){
+            if (arr[i] < 0) {
                 countOfNegativeElements++;
             }
-            if (arr[i] == 0){
+            if (arr[i] == 0) {
                 countOfZeroElements++;
             }
         }
-        returnList.add(String.format("%.6f",countOfPositiveElements/arr.length));
-        returnList.add(String.format("%.6f",countOfNegativeElements/arr.length));
-        returnList.add(String.format("%.6f",countOfZeroElements/arr.length));
+        returnList.add(String.format("%.6f", countOfPositiveElements / arr.length));
+        returnList.add(String.format("%.6f", countOfNegativeElements / arr.length));
+        returnList.add(String.format("%.6f", countOfZeroElements / arr.length));
 
         return returnList;
     }
 
     // Complete the staircase function below.
-    public static void staircase(int n) {
+    public static List<String> stairCase(int n) {
         char CASE_ELEMENT = '#';
+        List<String> returnStairList = new ArrayList<>();
 
         char[] spacesChar = new char[n];
         for (int i = 0; i < n; i++) {
             spacesChar[i] = ' ';
         }
 
-        for(int i = 0; i < n; i++) {
-            spacesChar[n-i-1] = CASE_ELEMENT;
-            System.out.println(String.valueOf(spacesChar));
+        for (int i = 0; i < n; i++) {
+            spacesChar[n - i - 1] = CASE_ELEMENT;
+            returnStairList.add(String.valueOf(spacesChar));
         }
+
+        return returnStairList;
     }
 
-    static void miniMaxSum(int[] arr) {
+    public static void miniMaxSum(int[] arr) {
         long minSumOfArray = 0;
         long maxSumOfArray = 0;
         long sumOfArray;
@@ -143,7 +145,7 @@ public class Solution {
                 minSumOfArray = sumOfArray;
             }
         }
-        System.out.println(minSumOfArray+" "+maxSumOfArray);
+        System.out.println(minSumOfArray + " " + maxSumOfArray);
     }
 
     public static int birthdayCakeCandles(List<Integer> candles) {
@@ -182,10 +184,10 @@ public class Solution {
         outList.add(0);
         for (int i = 0; i < a.size(); i++) {
             if (a.get(i) > b.get(i)) {
-                outList.set(0, outList.get(0)+1);
+                outList.set(0, outList.get(0) + 1);
             }
             if (a.get(i) < b.get(i)) {
-                outList.set(1, outList.get(1)+1);
+                outList.set(1, outList.get(1) + 1);
             }
         }
         return outList;
@@ -195,30 +197,29 @@ public class Solution {
         int[] nums = new int[n];
         int nOut;
         for (int i = 0; i < nums.length; i++) {
-            nums[i] = start + 2*i;
+            nums[i] = start + 2 * i;
         }
 
         nOut = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            nOut = nOut^nums[i];
+            nOut = nOut ^ nums[i];
         }
         return nOut;
     }
 
     // Complete the hourglassSum function below.
-    public static int hourglassSum(int[][] arr) {
-        int[][] pattern = new int[][] {{1, 1, 1},
-                                       {0, 1, 0},
-                                       {1, 1, 1}};
+    public static int hourGlassSum(int[][] arr) {
+        int[][] pattern = new int[][]{{1, 1, 1},
+                {0, 1, 0},
+                {1, 1, 1}};
         int sum = 0;
         int patternRowIndex = 0;
         int patternColumnIndex;
         int maxValue = 0;
 
 
-
-        for (int i = 0; i < arr.length-2; i++) {
-            for (int j = 0; j < arr.length-2; j++) {
+        for (int i = 0; i < arr.length - 2; i++) {
+            for (int j = 0; j < arr.length - 2; j++) {
                 for (int k = i; k <= 2 + i; k++) {
                     patternColumnIndex = 0;
                     for (int m = j; m <= 2 + j; m++) {
@@ -229,8 +230,8 @@ public class Solution {
                     }
                     patternRowIndex++;
                 }
-                if ((i==0)&(j==0)) maxValue = sum;
-                //System.out.println("sum = "+sum);
+                if ((i == 0) & (j == 0)) maxValue = sum;
+
                 if (sum > maxValue) maxValue = sum;
                 sum = 0;
                 patternRowIndex = 0;
@@ -244,7 +245,7 @@ public class Solution {
     public static List<List<Integer>> groupThePeople(int[] groupSizes) {
         Set<Integer> distinctArrayGroupSet = new HashSet<>();
         int groupIndex = 0;
-        List<List<Integer>> resultArray = new LinkedList<>();
+        List<List<Integer>> resultArray = new ArrayList<>();
 
         for (int groupSize : groupSizes) {
             distinctArrayGroupSet.add(groupSize);
@@ -252,11 +253,11 @@ public class Solution {
 
         resultArray.add(new LinkedList<>());
 
-        for (int group: distinctArrayGroupSet) {
+        for (int group : distinctArrayGroupSet) {
             for (int j = 0; j < groupSizes.length; j++) {
-                if (groupSizes[j]==group) {
+                if (groupSizes[j] == group) {
                     resultArray.get(groupIndex).add(j);
-                    if (resultArray.get(groupIndex).size()==group) {
+                    if (resultArray.get(groupIndex).size() == group) {
                         resultArray.add(new LinkedList<>());
                         groupIndex++;
                     }
@@ -264,7 +265,7 @@ public class Solution {
             }
         }
 
-        resultArray.remove(resultArray.size()-1);
+        resultArray.remove(resultArray.size() - 1);
 
         return resultArray;
     }
@@ -280,8 +281,8 @@ public class Solution {
         }
 
         for (int i = 0; i < queries.size(); i++) {
-            if (queries.get(i).get(0)==1) {
-                seqList.get((queries.get(i).get(1)^lastAnswer) % n).add(queries.get(i).get(2));
+            if (queries.get(i).get(0) == 1) {
+                seqList.get((queries.get(i).get(1) ^ lastAnswer) % n).add(queries.get(i).get(2));
             } else {
                 lastAnswer = seqList.get((queries.get(i).get(1) ^ lastAnswer) % n).get(queries.get(i).get(2) % seqList.get((queries.get(i).get(1) ^ lastAnswer) % n).size());
                 lastAnswerList.add(lastAnswer);
@@ -302,7 +303,7 @@ public class Solution {
             } else {
                 balanceCount--;
             }
-            if (balanceCount==0) {
+            if (balanceCount == 0) {
                 result++;
             }
         }
@@ -352,12 +353,13 @@ public class Solution {
 
         return totalX;
     }
+
     private static boolean getFactor(Integer i, List<Integer> a, List<Integer> b) {
-        for (Integer element: a) {
-            if (i%element!=0) return false;
+        for (Integer element : a) {
+            if (i % element != 0) return false;
         }
-        for (Integer element: b) {
-            if (element%i!=0) return false;
+        for (Integer element : b) {
+            if (element % i != 0) return false;
         }
 
         return true;
@@ -367,9 +369,9 @@ public class Solution {
     static int migratoryBirds(List<Integer> arr) {
         Map<Integer, Integer> birdTreeMap = new TreeMap<>();
 
-        for (Integer element: arr) {
+        for (Integer element : arr) {
             if (birdTreeMap.containsKey(element)) {
-                birdTreeMap.put(element, birdTreeMap.get(element)+1);
+                birdTreeMap.put(element, birdTreeMap.get(element) + 1);
             } else {
                 birdTreeMap.put(element, 1);
             }
@@ -402,8 +404,8 @@ public class Solution {
         char[] chars = s.toCharArray();
         boolean uniqueChar = false;
 
-        for (int i = 0; i < chars.length-1; i++) {
-            for (int j = i+1; j < chars.length; j++) {
+        for (int i = 0; i < chars.length - 1; i++) {
+            for (int j = i + 1; j < chars.length; j++) {
                 if (chars[i] == chars[j]) {
                     uniqueChar = false;
                     break;
@@ -448,11 +450,11 @@ public class Solution {
             if (initialString.length() > desiredString.length()) {
                 k = k - initialString.substring(desiredString.length()).length();
                 return (k < 0) ? NO : YES;
-            }
-            else {
+            } else {
                 int l = desiredString.length() - initialString.length();
                 if (k < l) return NO;
-                if ((k % 2 == 0) && (l % 2 == 0)) return YES; else return NO;
+                if ((k % 2 == 0) && (l % 2 == 0)) return YES;
+                else return NO;
             }
         } else {
             return (k < 0) ? NO : YES;
@@ -464,9 +466,11 @@ public class Solution {
         double x = Math.floor(Math.sqrt(a));
         int returnVal = 0;
 
-        if (Math.pow(x, 2) < a) { x++;}
+        if (Math.pow(x, 2) < a) {
+            x++;
+        }
 
-        while (Math.pow(x, 2) <= b)  {
+        while (Math.pow(x, 2) <= b) {
             x++;
             returnVal++;
         }
@@ -517,7 +521,7 @@ public class Solution {
         final String IMPOSSIBLE = "Impossible";
         final String POSSIBLE = "Possible";
 
-        for (Integer line: container.get(1)) {
+        for (Integer line : container.get(1)) {
 //
         }
 

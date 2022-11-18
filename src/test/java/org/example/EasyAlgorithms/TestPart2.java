@@ -2,10 +2,7 @@ package org.example.EasyAlgorithms;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.example.Leetcode.EasyAlgorithms.part2.Solution.*;
 
@@ -36,7 +33,7 @@ public class TestPart2 {
         int[] index = new int[]{0, 1, 2, 2, 1};
         nums = createTargetArray(nums, index);
         Arrays.stream(nums).forEach(s -> System.out.print(s + " "));
-        assert Arrays.equals(nums, new int[] {0, 4, 1, 3, 2});
+        assert Arrays.equals(nums, new int[]{0, 4, 1, 3, 2});
     }
 
     @Test
@@ -51,30 +48,46 @@ public class TestPart2 {
     }
 
     @Test
-    public void testStaircase() {
-        staircase(6);
+    public void testStairCase() {
+        System.out.println("test Staircase");
+        assert stairCase(6).equals(new ArrayList<>(List.of(new String[]{"     #", "    ##", "   ###", "  ####", " #####", "######"})
+        ));
     }
 
     @Test
     public void testBirthdayCakeCandles() {
-        System.out.println("test testBirthdayCakeCandles");
+        System.out.println("test BirthdayCakeCandles");
         List<Integer> candles = new ArrayList<>();
         for (int i = 0; i < 99999; i++) {
             candles.add(i, 1000);
         }
-        candles.add(99999, 999);
 
-        System.out.println(birthdayCakeCandles(candles));
+        candles.add(999);
+        assert birthdayCakeCandles(candles) == 99999;
+
+        candles.add(1111);
+        assert birthdayCakeCandles(candles) == 1;
+        candles.add(1111);
+        assert birthdayCakeCandles(candles) == 2;
+        candles.add(1234);
+        assert birthdayCakeCandles(candles) == 1;
+
     }
 
     @Test
     public void testTimeConversion() {
-        System.out.println("test testTimeConversion");
+        System.out.println("test TimeConversion");
+
         System.out.println(timeConversion("07:12:00AM"));
+        assert timeConversion("07:12:00AM").equals("07:12:00");
         System.out.println(timeConversion("07:12:30PM"));
+        assert timeConversion("07:12:30PM").equals("19:12:30");
         System.out.println(timeConversion("01:00:08PM"));
+        assert timeConversion("01:00:08PM").equals("13:00:08");
         System.out.println(timeConversion("12:40:22AM"));
+        assert timeConversion("12:40:22AM").equals("00:40:22");
         System.out.println(timeConversion("12:45:54PM"));
+        assert timeConversion("12:45:54PM").equals("12:45:54");
 
     }
 
@@ -91,18 +104,18 @@ public class TestPart2 {
         b.add(6);
         b.add(10);
         a = compareTriplets(a, b);
-        a.forEach(System.out::println);
+        assert a.stream().allMatch(e -> e == 1);
     }
 
     @Test
     public void testXorOperation() {
         System.out.println("test testXorOperation");
 
-        System.out.println(xorOperation(5, 0));
+        assert (xorOperation(5, 0) == 8);
     }
 
     @Test
-    public void testhourglassSum() {
+    public void testHourGlassSum() {
         System.out.println("test testhourglassSum");
         int[][] nums = new int[][]
                 {{-9, -9, -9, 1, 1, 1},
@@ -112,7 +125,7 @@ public class TestPart2 {
                         {0, 0, 0, -2, 0, 0},
                         {0, 0, 1, 2, 4, 0}};
 
-        System.out.println(hourglassSum(nums));
+       assert hourGlassSum(nums) == 28;
 
         int[][] nums2 = new int[][]
                 {{-1, -1, 0, -9, -2, -2},
@@ -122,17 +135,18 @@ public class TestPart2 {
                         {-7, -3, -3, -2, -9, -9},
                         {-1, -3, -1, -2, -4, -5}};
 
-        System.out.println(hourglassSum(nums2));
+        assert (hourGlassSum(nums2) == -6);
 
     }
 
     @Test
     public void testGroupThePeople() {
         System.out.println("test testGroupThePeople");
-        List<List<Integer>> resultArray = new LinkedList<>();
         int[] nums = new int[]{3, 3, 3, 3, 3, 1, 3};
-        resultArray = groupThePeople(nums);
+        List<List<Integer>> resultArray = groupThePeople(nums);
         resultArray.forEach(System.out::println);
+        //assert resultArray.equals();
+
         int[] nums2 = new int[]{2, 1, 3, 3, 3, 2};
         resultArray = groupThePeople(nums2);
         resultArray.forEach(System.out::println);
