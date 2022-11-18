@@ -3,7 +3,7 @@ package org.example.Leetcode.EasyAlgorithms.part2;
 import java.util.*;
 import java.util.List;
 
-class Solution {
+public class Solution {
 
     public static int subtractProductAndSum(int n) {
         String stringNumber = String.valueOf(n);
@@ -79,10 +79,11 @@ class Solution {
     }
 
     // Complete the plusMinus function below.
-    static void plusMinus(int[] arr) {
+    public static List<String> plusMinus(int[] arr) {
         double countOfPositiveElements = 0;
         double countOfNegativeElements = 0;
         double countOfZeroElements = 0;
+        List<String> returnList = new ArrayList<>();
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] > 0){
@@ -95,13 +96,15 @@ class Solution {
                 countOfZeroElements++;
             }
         }
-        System.out.printf("%.6f%n",countOfPositiveElements/arr.length);
-        System.out.printf("%.6f%n",countOfNegativeElements/arr.length);
-        System.out.printf("%.6f%n",countOfZeroElements/arr.length);
+        returnList.add(String.format("%.6f",countOfPositiveElements/arr.length));
+        returnList.add(String.format("%.6f",countOfNegativeElements/arr.length));
+        returnList.add(String.format("%.6f",countOfZeroElements/arr.length));
+
+        return returnList;
     }
 
     // Complete the staircase function below.
-    static void staircase(int n) {
+    public static void staircase(int n) {
         char CASE_ELEMENT = '#';
 
         char[] spacesChar = new char[n];
@@ -149,7 +152,7 @@ class Solution {
         return Integer.parseInt(String.valueOf(candles.stream().filter(element -> element.equals(i.get())).count()));
     }
 
-    static String timeConversion(String s) {
+    public static String timeConversion(String s) {
         /*
          * Write your code here.
          */
@@ -173,7 +176,7 @@ class Solution {
     }
 
     // Complete the compareTriplets function below.
-    static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+    public static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
         List<Integer> outList = new ArrayList<>();
         outList.add(0);
         outList.add(0);
@@ -203,7 +206,7 @@ class Solution {
     }
 
     // Complete the hourglassSum function below.
-    static int hourglassSum(int[][] arr) {
+    public static int hourglassSum(int[][] arr) {
         int[][] pattern = new int[][] {{1, 1, 1},
                                        {0, 1, 0},
                                        {1, 1, 1}};
