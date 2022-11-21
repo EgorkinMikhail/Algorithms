@@ -16,6 +16,7 @@ public class DesignerPdfViewer {
     public static int designerPdfViewer(List<Integer> h, String word) {
         alphabetHeightMap.clear();
         fillAlphabetHeightMap(h);
+        word = word.replaceAll("[^a-z]", "");
 
         char[] charList = word.toCharArray();
         int maxH = 0;
