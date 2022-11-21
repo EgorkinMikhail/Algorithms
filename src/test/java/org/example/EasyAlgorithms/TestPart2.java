@@ -145,11 +145,18 @@ public class TestPart2 {
         int[] nums = new int[]{3, 3, 3, 3, 3, 1, 3};
         List<List<Integer>> resultArray = groupThePeople(nums);
         resultArray.forEach(System.out::println);
-        //assert resultArray.equals();
+        assert resultArray.size() == 3;
+        assert resultArray.get(0).size() == 1;
+        assert resultArray.get(1).size() == 3;
+        assert resultArray.get(2).size() == 3;
 
         int[] nums2 = new int[]{2, 1, 3, 3, 3, 2};
         resultArray = groupThePeople(nums2);
         resultArray.forEach(System.out::println);
+        assert resultArray.size()==3;
+        assert resultArray.get(0).size() == 1;
+        assert resultArray.get(1).size() == 2;
+        assert resultArray.get(2).size() == 3;
 
     }
 
@@ -185,15 +192,19 @@ public class TestPart2 {
 
         List<Integer> outList = dynamicArray(2, queries);
         outList.forEach(System.out::println);
+        assert outList.equals(new ArrayList<>(List.of(7, 3)));
 
     }
 
     @Test
     public void testBalancedStringSplit() {
         System.out.println("test testBalancedStringSplit");
-
-        System.out.println(balancedStringSplit("RLRRLLRLRL"));
-        System.out.println(balancedStringSplit("RLRRRLLRLL"));
+        int outInt = balancedStringSplit("RLRRLLRLRL");
+        System.out.println(outInt);
+        assert outInt == 4;
+        outInt = balancedStringSplit("RLRRRLLRLL");
+        System.out.println(outInt);
+        assert outInt == 2;
     }
 
     @Test
@@ -207,19 +218,20 @@ public class TestPart2 {
         arr.add(4);
         arr.add(5);
         arr = rotateLeft(2, arr);
-
+        arr.forEach(System.out::println);
+        assert arr.equals(new ArrayList<>(List.of(3, 4, 5, 1, 2)));
     }
 
     @Test
     public void testAppendAndDelete() {
         System.out.println("test testAppendAndDelete");
-
-        System.out.println(appendAndDelete("qwerasdf", "qwerbsdf", 6));
-        System.out.println(appendAndDelete("y", "yu", 2));
-        System.out.println(appendAndDelete("aaaaaaaaaa", "aaaaa", 7));
-        System.out.println(appendAndDelete("zzzzz", "zzzzzzz", 4));
-        System.out.println("--");
-        System.out.println(appendAndDelete("abcd", "abcdert", 10));
+        String YES = "Yes";
+        String NO = "No";
+        assert NO.equals(appendAndDelete("qwerasdf", "qwerbsdf", 6));
+        assert NO.equals(appendAndDelete("y", "yu", 2));
+        assert YES.equals(appendAndDelete("aaaaaaaaaa", "aaaaa", 7));
+        assert YES.equals(appendAndDelete("zzzzz", "zzzzzzz", 4));
+        assert NO.equals(appendAndDelete("abcd", "abcdert", 10));
 
     }
 
@@ -227,9 +239,9 @@ public class TestPart2 {
     public void testSquares() {
         System.out.println("test testSquares");
 
-        System.out.println(squares(3, 4));
-        System.out.println(squares(17, 24));
-        System.out.println(squares(2, 24));
+        assert squares(3, 4) == 1;
+        assert squares(17, 24) == 0;
+        assert squares(2, 24) == 3;
 
     }
 
@@ -246,11 +258,13 @@ public class TestPart2 {
         arr.add(2);
         arr.add(1);
         arr.add(1);
-        System.out.println(cutTheSticks(arr));
+        assert cutTheSticks(arr).equals(new ArrayList<>(List.of(9, 6, 4, 1)));
+
     }
 
     @Test
     public void testStringStream() {
-        System.out.println(stringStream("S asdasd, 67:77 mm ASA ASD -    asd asd ss Ss fdggofdg ss sdsd SS"));
+        String retString = "[ASA:1][ASD:3][asdasd:1][fdggofdg:1][mm:1][S:1][sdsd:1][ss:4]";
+        assert retString.equals(stringStream("S asdasd, 67:77 mm ASA ASD -    asd asd ss Ss fdggofdg ss sdsd SS"));
     }
 }

@@ -321,9 +321,6 @@ public class Solution {
         for (int i = 0; i < d; i++) {
             rotatedArr.add(arr.get(i));
         }
-
-        rotatedArr.forEach(System.out::println);
-
         return rotatedArr;
     }
 
