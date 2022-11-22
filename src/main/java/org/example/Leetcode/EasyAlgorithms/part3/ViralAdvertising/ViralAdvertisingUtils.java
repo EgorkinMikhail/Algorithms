@@ -1,6 +1,6 @@
 package org.example.Leetcode.EasyAlgorithms.part3.ViralAdvertising;
 
-class Result {
+public class ViralAdvertisingUtils {
 
     /*
      * Complete the 'viralAdvertising' function below.

@@ -1,5 +1,6 @@
 package org.example.EasyAlgorithms;
 
+import org.example.Leetcode.EasyAlgorithms.part3.LinkedListCycle.ListNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,6 +10,12 @@ import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.cir
 import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.permutationEquation;
 import static org.example.Leetcode.EasyAlgorithms.part3.DesignerPdfViewer.DesignerPdfViewer.designerPdfViewer;
 import static org.example.Leetcode.EasyAlgorithms.part3.GradingStudents.StudentsAndGradesUtil.gradingStudents;
+import static org.example.Leetcode.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
+import static org.example.Leetcode.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
+import static org.example.Leetcode.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
+import static org.example.Leetcode.EasyAlgorithms.part3.Stackparcer.ParserUtils.isBalanced;
+import static org.example.Leetcode.EasyAlgorithms.part3.UtopianTree.Part3Utils.*;
+import static org.example.Leetcode.EasyAlgorithms.part3.ViralAdvertising.ViralAdvertisingUtils.viralAdvertising;
 
 public class TestPart3 {
 
@@ -93,5 +100,106 @@ public class TestPart3 {
         gradeList.add(45);
         gradeList.add(73);
         assert gradingStudents(gradeList).equals(new ArrayList<>(List.of(40, 25, 7, 60, 45, 75)));
+    }
+
+    @Test
+    public void testJumpingOnClouds() {
+
+        int returnCycles = jumpingOnClouds(new int[]{1, 3, 4, 6, 7, 8}, 3);
+        System.out.println(returnCycles);
+        assert returnCycles == 84;
+
+        returnCycles = jumpingOnClouds(new int[]{2, 4, 2, 3}, 2);
+        System.out.println(returnCycles);
+        assert returnCycles == 90;
+
+    }
+
+    @Test
+    public void testHasCycle() {
+        ListNode headListNode = new ListNode(1);
+        ListNode secondLevelListNode = new ListNode(2);
+        headListNode.setNext(secondLevelListNode);
+        ListNode thirdLevelListNode = new ListNode(3);
+        secondLevelListNode.setNext(thirdLevelListNode);
+        ListNode fourthLevelListNode = new ListNode(4);
+        thirdLevelListNode.setNext(fourthLevelListNode);
+        fourthLevelListNode.setNext(headListNode); // create cycle
+        ListNode fifthLevelListNode = new ListNode(5); // unusable Node
+        assert hasCycle(headListNode);
+
+        fourthLevelListNode.setNext(fifthLevelListNode); // delete cycle
+        assert !hasCycle(headListNode);
+
+    }
+
+    @Test
+    public void testSaveThePrisoner() {
+        assert saveThePrisoner(10, 2, 3) == 4;
+
+        assert saveThePrisoner(11, 30, 7) == 3;
+
+        assert saveThePrisoner(12, 123, 10) == 12;
+
+        assert saveThePrisoner(13, 23, 5) == 1;
+
+        assert saveThePrisoner(13023, 2323231, 342) == 5478;
+    }
+
+    @Test
+    public void testIsBalanced() {
+        assert isBalanced("{}{}{}{}{}{}");
+        assert isBalanced("(({{}}{({(({}))})}))");
+        assert !isBalanced("{()({}{())}})}");
+        assert isBalanced("((()){}(){()}(()))");
+        assert !isBalanced("(({}({}{(}{)}){}{}))");
+        assert isBalanced("{}()");
+    }
+
+    @Test
+    public void testUtopianTree() {
+        assert utopianTree(60) == 2147483647;
+        assert utopianTree(0) == 1;
+        assert utopianTree(100) == -1;
+        assert utopianTree(34) == 262143;
+
+    }
+
+    @Test
+    public void testAngryProfessor() {
+        final String YES = "YES";
+        final String NO = "NO";
+        List<Integer> minutesAfterStartList = new ArrayList<>();
+        minutesAfterStartList.add(13);
+        minutesAfterStartList.add(10);
+        minutesAfterStartList.add(-20);
+        minutesAfterStartList.add(1);
+        minutesAfterStartList.add(34);
+        minutesAfterStartList.add(50);
+        minutesAfterStartList.add(-5);
+        minutesAfterStartList.add(-3);
+        minutesAfterStartList.add(8);
+        assert YES.equals(angryProfessor(30, minutesAfterStartList));
+        assert NO.equals(angryProfessor(0, minutesAfterStartList));
+        assert YES.equals(angryProfessor(5, minutesAfterStartList));
+        assert NO.equals(angryProfessor(3, minutesAfterStartList));
+    }
+
+    @Test
+    public void testBeautifulDays() {
+        assert beautifulDays(1, 30, 2) == 19;
+        assert beautifulDays(10, 30, 2) == 10;
+        assert beautifulDays(10, 30, 3) == 21;
+        assert beautifulDays(20, 29, 5) == 2;
+        assert beautifulDays(12, 12, 7) == 0;
+    }
+
+    @Test
+    public void testViralAdvertising() {
+        assert viralAdvertising(1) == 2;
+        assert viralAdvertising(10) == 189;
+        assert viralAdvertising(20) == 10796;
+        assert viralAdvertising(30) == 622157;
+        assert viralAdvertising(40) == 35875988;
     }
 }

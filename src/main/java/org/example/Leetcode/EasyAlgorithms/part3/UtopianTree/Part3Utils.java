@@ -2,7 +2,7 @@ package org.example.Leetcode.EasyAlgorithms.part3.UtopianTree;
 
 import java.util.List;
 
-class UtopianTree {
+public class Part3Utils {
 
     /*
      * Complete the 'utopianTree' function below.
@@ -15,6 +15,7 @@ class UtopianTree {
         // Write your code here
         int returnIntValue = 0; // 4
         if (n == 0) return 1;
+        if (n > 60) return -1;
         for (int i = 0; i <= n; i++) {
             if (i%2 == 0) {
                 returnIntValue = returnIntValue + 1;

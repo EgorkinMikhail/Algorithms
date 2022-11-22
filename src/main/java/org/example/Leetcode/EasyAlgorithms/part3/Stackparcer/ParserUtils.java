@@ -1,11 +1,10 @@
 package org.example.Leetcode.EasyAlgorithms.part3.Stackparcer;
 
-import java.util.*;
-import java.util.Scanner;
+import java.util.Stack;
 
 // Write your code here. DO NOT use an access modifier in your class declaration.
-class Parser {
-    public boolean isBalanced(String s) {
+public class ParserUtils {
+    public static boolean isBalanced(String s) {
         char[] sCharArray = s.toCharArray();
         Stack<Character> stack = new Stack<>();
         Character tempStr;
@@ -35,26 +34,11 @@ class Parser {
         return stack.empty();
     }
 
-    private boolean isOpen(char charElement) {
+    private static boolean isOpen(char charElement) {
         return charElement == '{' || charElement == '(';
     }
 
-    private boolean isClose(char charElement) {
+    private static boolean isClose(char charElement) {
         return charElement == '}' || charElement == ')';
-    }
-}
-class Solution {
-
-    public static void main(String[] args) {
-        Parser parser = new Parser();
-
-        Scanner in = new Scanner(System.in);
-
-        while (in.hasNext()) {
-            System.out.println(parser.isBalanced(in.next()));
-        }
-
-        in.close();
-
     }
 }
