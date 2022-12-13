@@ -5,16 +5,15 @@ import org.junit.Test;
 import java.util.*;
 
 import static org.example.Leetcode.EasyAlgorithms.part2.Solution.*;
+import static org.junit.Assert.assertEquals;
 
 public class TestPart2 {
 
     @Test
     public void testSubtractProductAndSum() {
         System.out.println("test testSubtractProductAndSum");
-        System.out.println(subtractProductAndSum(234));
-        assert subtractProductAndSum(234) == 15;
-        System.out.println(subtractProductAndSum(4421));
-        assert subtractProductAndSum(4421) == 21;
+        assertEquals(15, subtractProductAndSum(234));
+        assertEquals(21, subtractProductAndSum(4421));
     }
 
     @Test
@@ -42,9 +41,9 @@ public class TestPart2 {
         int[] nums = new int[]{-4, 3, -9, 0, 4, 1};
         List<String> resultPlusMinusList = plusMinus(nums);
         resultPlusMinusList.forEach(System.out::println);
-        assert resultPlusMinusList.get(0).equals("0.500000");
-        assert resultPlusMinusList.get(1).equals("0.333333");
-        assert resultPlusMinusList.get(2).equals("0.166667");
+        assertEquals("0.500000", resultPlusMinusList.get(0));
+        assertEquals("0.333333", resultPlusMinusList.get(1));
+        assertEquals("0.166667", resultPlusMinusList.get(2));
     }
 
     @Test
@@ -63,14 +62,13 @@ public class TestPart2 {
         }
 
         candles.add(999);
-        assert birthdayCakeCandles(candles) == 99999;
-
+        assertEquals(99999, birthdayCakeCandles(candles));
         candles.add(1111);
-        assert birthdayCakeCandles(candles) == 1;
+        assertEquals(1, birthdayCakeCandles(candles));
         candles.add(1111);
-        assert birthdayCakeCandles(candles) == 2;
+        assertEquals(2, birthdayCakeCandles(candles));
         candles.add(1234);
-        assert birthdayCakeCandles(candles) == 1;
+        assertEquals(1, birthdayCakeCandles(candles));
 
     }
 
@@ -78,16 +76,11 @@ public class TestPart2 {
     public void testTimeConversion() {
         System.out.println("test TimeConversion");
 
-        System.out.println(timeConversion("07:12:00AM"));
-        assert timeConversion("07:12:00AM").equals("07:12:00");
-        System.out.println(timeConversion("07:12:30PM"));
-        assert timeConversion("07:12:30PM").equals("19:12:30");
-        System.out.println(timeConversion("01:00:08PM"));
-        assert timeConversion("01:00:08PM").equals("13:00:08");
-        System.out.println(timeConversion("12:40:22AM"));
-        assert timeConversion("12:40:22AM").equals("00:40:22");
-        System.out.println(timeConversion("12:45:54PM"));
-        assert timeConversion("12:45:54PM").equals("12:45:54");
+        assertEquals("07:12:00", timeConversion("07:12:00AM"));
+        assertEquals("19:12:30", timeConversion("07:12:30PM"));
+        assertEquals("13:00:08", timeConversion("01:00:08PM"));
+        assertEquals("00:40:22", timeConversion("12:40:22AM"));
+        assertEquals("12:45:54", timeConversion("12:45:54PM"));
 
     }
 
@@ -111,7 +104,7 @@ public class TestPart2 {
     public void testXorOperation() {
         System.out.println("test testXorOperation");
 
-        assert (xorOperation(5, 0) == 8);
+        assertEquals(8, xorOperation(5, 0));
     }
 
     @Test
@@ -125,7 +118,7 @@ public class TestPart2 {
                         {0, 0, 0, -2, 0, 0},
                         {0, 0, 1, 2, 4, 0}};
 
-       assert hourGlassSum(nums) == 28;
+        assertEquals(28, hourGlassSum(nums));
 
         int[][] nums2 = new int[][]
                 {{-1, -1, 0, -9, -2, -2},
@@ -135,7 +128,7 @@ public class TestPart2 {
                         {-7, -3, -3, -2, -9, -9},
                         {-1, -3, -1, -2, -4, -5}};
 
-        assert (hourGlassSum(nums2) == -6);
+        assertEquals(-6, hourGlassSum(nums2));
 
     }
 
@@ -145,18 +138,18 @@ public class TestPart2 {
         int[] nums = new int[]{3, 3, 3, 3, 3, 1, 3};
         List<List<Integer>> resultArray = groupThePeople(nums);
         resultArray.forEach(System.out::println);
-        assert resultArray.size() == 3;
-        assert resultArray.get(0).size() == 1;
-        assert resultArray.get(1).size() == 3;
-        assert resultArray.get(2).size() == 3;
+        assertEquals(3, resultArray.size());
+        assertEquals(1, resultArray.get(0).size());
+        assertEquals(3, resultArray.get(1).size());
+        assertEquals(3, resultArray.get(2).size());
 
         int[] nums2 = new int[]{2, 1, 3, 3, 3, 2};
         resultArray = groupThePeople(nums2);
         resultArray.forEach(System.out::println);
-        assert resultArray.size()==3;
-        assert resultArray.get(0).size() == 1;
-        assert resultArray.get(1).size() == 2;
-        assert resultArray.get(2).size() == 3;
+        assertEquals(3, resultArray.size());
+        assertEquals(1, resultArray.get(0).size());
+        assertEquals(2, resultArray.get(1).size());
+        assertEquals(3, resultArray.get(2).size());
 
     }
 
@@ -201,10 +194,10 @@ public class TestPart2 {
         System.out.println("test testBalancedStringSplit");
         int outInt = balancedStringSplit("RLRRLLRLRL");
         System.out.println(outInt);
-        assert outInt == 4;
+        assertEquals(4, outInt);
         outInt = balancedStringSplit("RLRRRLLRLL");
         System.out.println(outInt);
-        assert outInt == 2;
+        assertEquals(2, outInt);
     }
 
     @Test
@@ -227,11 +220,11 @@ public class TestPart2 {
         System.out.println("test testAppendAndDelete");
         String YES = "Yes";
         String NO = "No";
-        assert NO.equals(appendAndDelete("qwerasdf", "qwerbsdf", 6));
-        assert NO.equals(appendAndDelete("y", "yu", 2));
-        assert YES.equals(appendAndDelete("aaaaaaaaaa", "aaaaa", 7));
-        assert YES.equals(appendAndDelete("zzzzz", "zzzzzzz", 4));
-        assert NO.equals(appendAndDelete("abcd", "abcdert", 10));
+        assertEquals(NO, appendAndDelete("qwerasdf", "qwerbsdf", 6));
+        assertEquals(NO, appendAndDelete("y", "yu", 2));
+        assertEquals(YES, appendAndDelete("aaaaaaaaaa", "aaaaa", 7));
+        assertEquals(YES, appendAndDelete("zzzzz", "zzzzzzz", 4));
+        assertEquals(NO, appendAndDelete("abcd", "abcdert", 10));
 
     }
 
@@ -239,9 +232,9 @@ public class TestPart2 {
     public void testSquares() {
         System.out.println("test testSquares");
 
-        assert squares(3, 4) == 1;
-        assert squares(17, 24) == 0;
-        assert squares(2, 24) == 3;
+        assertEquals(1, squares(3, 4));
+        assertEquals(0, squares(17, 24));
+        assertEquals(3, squares(2, 24));
 
     }
 
@@ -265,6 +258,6 @@ public class TestPart2 {
     @Test
     public void testStringStream() {
         String retString = "[ASA:1][ASD:3][asdasd:1][fdggofdg:1][mm:1][S:1][sdsd:1][ss:4]";
-        assert retString.equals(stringStream("S asdasd, 67:77 mm ASA ASD -    asd asd ss Ss fdggofdg ss sdsd SS"));
+        assertEquals(retString, stringStream("S asdasd, 67:77 mm ASA ASD -    asd asd ss Ss fdggofdg ss sdsd SS"));
     }
 }

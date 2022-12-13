@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class TestPart1 {
     Solution solution = new Solution();
 
@@ -26,7 +28,6 @@ public class TestPart1 {
         int[] numsOut = solution.shuffle(nums, nums.length / 2);
         Arrays.stream(numsOut).forEach(s -> System.out.print(s + " "));
         assert Arrays.equals(numsOut, new int[]{2, 3, 6, 5, 1, 7, 3, 1, 8, 4});
-
     }
 
     @Test
@@ -47,38 +48,30 @@ public class TestPart1 {
     @Test
     public void testDefangIPaddr() {
         System.out.println("test startDefangIPaddr");
-        System.out.println(solution.defangIPaddr("1.1.1.1"));
-        assert solution.defangIPaddr("1.1.1.1").equals("1[.]1[.]1[.]1");
+        assertEquals("1[.]1[.]1[.]1", solution.defangIPaddr("1.1.1.1"));
     }
 
     @Test
     public void testRestoreString() {
         System.out.println("test startRestoreString");
         int[] nums = {3, 1, 4, 2, 0};
-        System.out.println(solution.restoreString("aiohn", nums));
-        assert solution.restoreString("aiohn", nums).equals("nihao");
-        System.out.println(solution.restoreString2("aiohn", nums));
-        assert solution.restoreString2("aiohn", nums).equals("nihao");
+        assertEquals("nihao", solution.restoreString("aiohn", nums));
+        assertEquals("nihao", solution.restoreString2("aiohn", nums));
     }
 
     @Test
     public void testNumJewelsInStones() {
         System.out.println("test startNumJewelsInStones");
-        System.out.println(solution.numJewelsInStones("aA", "aAAbbb"));
-        assert solution.numJewelsInStones("aA", "aAAbbb") == 3;
-        System.out.println(solution.numJewelsInStones("Z", "zzzzz"));
-        assert solution.numJewelsInStones("Z", "zzzzz") == 0;
+        assertEquals(3, solution.numJewelsInStones("aA", "aAAbbb"));
+        assertEquals(0, solution.numJewelsInStones("Z", "zzzzz"));
     }
 
     @Test
     public void testNNumberOfSteps() {
         System.out.println("test startnNumberOfSteps");
-        System.out.println(solution.numberOfSteps(14));
-        assert solution.numberOfSteps(14) == 6;
-        System.out.println(solution.numberOfSteps(8));
-        assert solution.numberOfSteps(8) == 4;
-        System.out.println(solution.numberOfSteps(123));
-        assert solution.numberOfSteps(123) == 12;
+        assertEquals(6, solution.numberOfSteps(14));
+        assertEquals(4, solution.numberOfSteps(8));
+        assertEquals(12, solution.numberOfSteps(123));
     }
 
     @Test
