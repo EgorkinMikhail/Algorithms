@@ -11,15 +11,15 @@ import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.per
 import static org.example.Leetcode.EasyAlgorithms.part3.DesignerPdfViewer.DesignerPdfViewer.designerPdfViewer;
 import static org.example.Leetcode.EasyAlgorithms.part3.GradingStudents.StudentsAndGradesUtil.gradingStudents;
 import static org.example.Leetcode.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
+import static org.example.Leetcode.EasyAlgorithms.part3.LibraryFine.LibraryFine.libraryFine;
 import static org.example.Leetcode.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
+import static org.example.Leetcode.EasyAlgorithms.part3.RepeatedString.RepeatedString.repeatedString;
 import static org.example.Leetcode.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
 import static org.example.Leetcode.EasyAlgorithms.part3.Stackparcer.ParserUtils.isBalanced;
 import static org.example.Leetcode.EasyAlgorithms.part3.UtopianTree.Part3Utils.*;
 import static org.example.Leetcode.EasyAlgorithms.part3.ViralAdvertising.ViralAdvertisingUtils.viralAdvertising;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.example.Leetcode.MediumAlgorithms.NonDivisibleSubset.NonDivisibleSubset.nonDivisibleSubset;
+import static org.junit.Assert.*;
 
 
 public class TestPart3 {
@@ -203,5 +203,69 @@ public class TestPart3 {
         assertEquals(viralAdvertising(20), 10796);
         assertEquals(viralAdvertising(30), 622157);
         assertEquals(viralAdvertising(40), 35875988);
+    }
+
+    @Test
+    public void testLibraryFine() {
+        assertEquals(libraryFine(1, 6, 2015, 1, 6, 2015), 0);
+        assertEquals(libraryFine(1, 10, 2015, 6, 6, 2015), 2000);
+        assertEquals(libraryFine(1, 8, 2015, 1, 7, 2015), 500);
+        assertEquals(libraryFine(1, 7, 2016, 1, 8, 2015), 10000);
+
+        assertEquals(libraryFine(1, 3, 2015, 6, 6, 2015), 0);
+        assertEquals(libraryFine(1, 6, 2015, 1, 7, 2015), 0);
+        assertEquals(libraryFine(1, 7, 2014, 1, 8, 2015), 0);
+    }
+
+    @Test
+    public void testNonDivisibleSubset() {
+        List<Integer> listOfIntegers = new ArrayList<>();
+        listOfIntegers.add(1);
+        listOfIntegers.add(7);
+        listOfIntegers.add(2);
+        listOfIntegers.add(4);
+        int result = nonDivisibleSubset(3, listOfIntegers);
+        assertEquals(3, result);
+        listOfIntegers.clear();
+        listOfIntegers.add(278);
+        listOfIntegers.add(576);
+        listOfIntegers.add(496);
+        listOfIntegers.add(727);
+        listOfIntegers.add(410);
+        listOfIntegers.add(124);
+        listOfIntegers.add(338);
+        listOfIntegers.add(149);
+        listOfIntegers.add(209);
+        listOfIntegers.add(702);
+        listOfIntegers.add(282);
+        listOfIntegers.add(718);
+        listOfIntegers.add(771);
+        listOfIntegers.add(575);
+        listOfIntegers.add(436);
+        result = nonDivisibleSubset(7, listOfIntegers);
+        assertEquals(11, result);
+        listOfIntegers.clear();
+        listOfIntegers.add(770528134);
+        listOfIntegers.add(663501748);
+        listOfIntegers.add(384261537);
+        listOfIntegers.add(800309024);
+        listOfIntegers.add(103668401);
+        listOfIntegers.add(538539662);
+        listOfIntegers.add(385488901);
+        listOfIntegers.add(101262949);
+        listOfIntegers.add(557792122);
+        listOfIntegers.add(46058493);
+        result = nonDivisibleSubset(5, listOfIntegers);
+        assertEquals(6, result);
+    }
+
+    @Test
+    public void testRepeatedString() {
+        assertEquals(7, repeatedString("aba", 10));
+        assertEquals(9, repeatedString("abcab", 23));
+        assertEquals(1000000000000L, repeatedString("a", 1000000000000L));
+        String s = "kmretasscityylpdhuwjirnqimlkcgxubxmsxpypgzxtenweirknjtasxtvxemtwxuarabssvqdnktqadhyktagjxoanknhgilnm";
+        assertEquals(51574523448L, repeatedString(s, 736778906400L));
+
     }
 }
