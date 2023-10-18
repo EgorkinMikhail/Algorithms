@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.circularArrayRotation;
 import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.permutationEquation;
@@ -198,7 +200,7 @@ public class TestPart3 {
 
     @Test
     public void testViralAdvertising() {
-        assertEquals(viralAdvertising(1) , 2);
+        assertEquals(viralAdvertising(1), 2);
         assertEquals(viralAdvertising(10), 189);
         assertEquals(viralAdvertising(20), 10796);
         assertEquals(viralAdvertising(30), 622157);
@@ -267,5 +269,203 @@ public class TestPart3 {
         String s = "kmretasscityylpdhuwjirnqimlkcgxubxmsxpypgzxtenweirknjtasxtvxemtwxuarabssvqdnktqadhyktagjxoanknhgilnm";
         assertEquals(51574523448L, repeatedString(s, 736778906400L));
 
+    }
+
+    @Test
+    public void testOptionalAndList() {
+        List<String> testList = new ArrayList<>();
+        testList.add("A");
+        testList.add("A");
+        testList.add("A");
+        testList.add("A");
+        testList.add("A");
+
+        Optional<String> b = testList.stream().filter(a -> a.equalsIgnoreCase("X")).findFirst();
+
+        if (b.isEmpty()) {
+            System.out.println("EMPTY");
+        }
+
+        List<String> bList = testList.stream().filter(a -> a.equalsIgnoreCase("X")).collect(Collectors.toList());
+
+        if (bList.isEmpty()) {
+            System.out.println("EMPTY LIST");
+        }
+
+        testList.add("X");
+
+        b = Optional.ofNullable(
+                testList.stream().filter(a -> a.equalsIgnoreCase("X")).toList().get(0)
+        );
+
+        if (b.isPresent()) {
+            System.out.println("BINGO");
+        }
+
+        bList = testList.stream().filter(a -> a.equalsIgnoreCase("X")).collect(Collectors.toList());
+
+        if (bList.size() > 0) {
+            System.out.println("BINGO LIST");
+        }
+
+    }
+
+    @Test
+    public void testStreamApiWithMap() {
+
+        class DTODestinationBalanceEvent {
+            String orderNumber;
+
+            public DTODestinationBalanceEvent(String orderNumber) {
+                this.orderNumber = orderNumber;
+            }
+
+            @Override
+            public String toString() {
+                return "DTODestinationBalanceEvent{" +
+                        "orderNumber='" + orderNumber + '\'' +
+                        '}';
+            }
+        }
+        class DTOTransferEntity {
+
+            private String sourceEvent;
+            private DTODestinationBalanceEvent destinationEvent;
+
+            public DTOTransferEntity(String sourceEvent, DTODestinationBalanceEvent destinationEvent) {
+                this.sourceEvent = sourceEvent;
+                this.destinationEvent = destinationEvent;
+            }
+
+            public DTODestinationBalanceEvent getDestinationEvent() {
+                return destinationEvent;
+            }
+        }
+        List<DTOTransferEntity> items = new ArrayList<>();
+        items.add(new DTOTransferEntity("1", new DTODestinationBalanceEvent("1")));
+        items.add(new DTOTransferEntity("2", new DTODestinationBalanceEvent("2")));
+        items.add(new DTOTransferEntity("3", new DTODestinationBalanceEvent("3")));
+        items.add(new DTOTransferEntity("4", new DTODestinationBalanceEvent("4")));
+
+        List<DTODestinationBalanceEvent> dtoDestinationBalanceEvents = items.parallelStream().map(DTOTransferEntity::getDestinationEvent).collect(Collectors.toList());
+        dtoDestinationBalanceEvents.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSqlStrings() {
+        List<String> tableNameList = new ArrayList<>(List.of("C_BR_PRTY_RLE_PSTL_ADDR",
+                "C_BO_PSTL_ADDR",
+                "C_BO_PRTY_RLE_TAX",
+                "C_C_XO_PARTY_BANK",
+                "C_C_XO_PARTY_ROLE",
+                "C_C_XO_BUSINESS_CHANNEL",
+                "C_C_XO_BUSINESS_SERVICES"
+        ));
+
+        String CREATE_TEMP_TABLE_QUERY = "SELECT ROWID_XREF INTO c360_ors.dbo.TEMP_{TABLE_NAME} FROM c360_ors.dbo.{TABLE_NAME}_XREF WHERE 0 = 1";
+        String CLEAR_TEMP_TABLE_QUERY = "DELETE FROM c360_ors.dbo.TEMP_{TABLE_NAME};";
+        String INITIAL_TEMP_QUERY = "IF OBJECT_ID('c360_ors.dbo.TEMP_{TABLE_NAME}', 'U') IS NULL ";
+
+        if (tableNameList.iterator().hasNext()) {
+            String tableName = tableNameList.iterator().next();
+            String CREATE_TEMP_TABLE_QUERY_SQL = CREATE_TEMP_TABLE_QUERY.replace("{TABLE_NAME}", tableName)
+                    .replace("{TABLE_NAME}", tableName);
+            String CLEAR_TEMP_TABLE_QUERY_SQL = CLEAR_TEMP_TABLE_QUERY.replace("{TABLE_NAME}", tableName);
+            String SQL_QUERY = INITIAL_TEMP_QUERY.replace("{TABLE_NAME}", tableName)
+                    + CREATE_TEMP_TABLE_QUERY_SQL
+                    + " ELSE " + CLEAR_TEMP_TABLE_QUERY_SQL;
+
+            System.out.println(SQL_QUERY);
+
+            String CONDITION_QUERY = "(SELECT ROWID_XREF FROM c360_ors.dbo.{TABLE_NAME}_XREF WHERE {CONDITION});";
+            String INSERT_TEMP_QUERY = "INSERT INTO c360_ors.dbo.TEMP_{TABLE_NAME} (ROWID_XREF) ";
+            CONDITION_QUERY = CONDITION_QUERY.replace("{CONDITION}", "HUB_STATE_IND = -1");
+
+            SQL_QUERY = INSERT_TEMP_QUERY.replace("{TABLE_NAME}", tableName)
+                    .concat(CONDITION_QUERY.replace("{TABLE_NAME}", tableName));
+
+            System.out.println(SQL_QUERY);
+
+            tableNameList.remove(tableName);
+            System.out.println(tableNameList);
+        }
+
+
+    }
+    public boolean isBlank(String str)
+    {
+        if (str == null)
+        {
+            return true;
+        }
+        int len = str.length();
+        for (int i = 0; i < len; i++)
+        {
+            if (!Character.isWhitespace(str.codePointAt(i)))
+            {
+                // found a non-whitespace, we can stop searching  now
+                return false;
+            }
+        }
+        // only whitespace
+        return true;
+    }
+    public boolean isNotBlank(String str)
+    {
+        if (str == null)
+        {
+            return false;
+        }
+        int len = str.length();
+        for (int i = 0; i < len; i++)
+        {
+            if (!Character.isWhitespace(str.codePointAt(i)))
+            {
+                // found a non-whitespace, we can stop searching  now
+                return true;
+            }
+        }
+        // only whitespace
+        return false;
+    }
+    @Test
+    public void name() {
+
+
+        String vatTaxType = "";
+        if (true) {
+            String vatId = "PL2220897045";
+            String taxId = "";
+
+            if (isNotBlank(vatId)) {
+                vatTaxType = "VAT_TYPE";
+            }
+
+            if (isNotBlank(taxId) && isBlank(vatTaxType)) {
+                vatTaxType = "TAX_TYPE";
+            }
+
+        }
+        System.out.println(vatTaxType);
+    }
+
+    @Test
+    public void testStringFormat() {
+        String faultCode = "SIP-23141";
+        String faultString = "Error with test code";
+        String output = String.format("Received Fault message with code: %s, and value: %s. Detailed in logs", faultCode,
+                faultString);
+
+        System.out.println(output);
+    }
+
+    @Test
+    public void testRegExp() {
+        String dateConvertString = "CASE WHEN CHARINDEX('-', {DATE_COLUMN}) > 0 "
+                + "THEN CONVERT(datetime, {DATE_COLUMN}, 103) "
+                + "ELSE CAST({DATE_COLUMN} AS datetime) "
+                + "END";
+        dateConvertString = dateConvertString.replaceAll("\\{DATE_COLUMN}", "{PREFIX}_{SOURCE_SYSTEM}_LOAD_DATE");
+        System.out.println(dateConvertString);
     }
 }
