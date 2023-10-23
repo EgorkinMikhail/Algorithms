@@ -5,6 +5,10 @@ import java.util.Stack;
 // Write your code here. DO NOT use an access modifier in your class declaration.
 public class ParserUtils {
     public static boolean isBalanced(String s) {
+        // empty
+        // null
+        // doesn't contain brackets
+
         char[] sCharArray = s.toCharArray();
         Stack<Character> stack = new Stack<>();
         Character tempStr;

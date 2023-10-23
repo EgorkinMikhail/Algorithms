@@ -17,6 +17,7 @@ import static org.example.Leetcode.EasyAlgorithms.part3.LibraryFine.LibraryFine.
 import static org.example.Leetcode.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
 import static org.example.Leetcode.EasyAlgorithms.part3.RepeatedString.RepeatedString.repeatedString;
 import static org.example.Leetcode.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
+import static org.example.Leetcode.EasyAlgorithms.part3.SpecialMultiply.SpecialMultiply.multiply;
 import static org.example.Leetcode.EasyAlgorithms.part3.Stackparcer.ParserUtils.isBalanced;
 import static org.example.Leetcode.EasyAlgorithms.part3.UtopianTree.Part3Utils.*;
 import static org.example.Leetcode.EasyAlgorithms.part3.ViralAdvertising.ViralAdvertisingUtils.viralAdvertising;
@@ -467,5 +468,19 @@ public class TestPart3 {
                 + "END";
         dateConvertString = dateConvertString.replaceAll("\\{DATE_COLUMN}", "{PREFIX}_{SOURCE_SYSTEM}_LOAD_DATE");
         System.out.println(dateConvertString);
+    }
+
+    @Test
+    public void testSpecialMultiply() {
+        assertEquals(20, multiply(4, 5));
+        assertEquals(-15, multiply(5, -3));
+        assertEquals(-28, multiply(-7, 4));
+        assertEquals(5, multiply(-1, -5));
+        assertEquals(0, multiply(0, 0));
+        assertEquals(0, multiply(1, 0));
+        assertEquals(0, multiply(0, 2));
+        assertEquals(0, multiply(-1, 0));
+        assertEquals(0, multiply(0, -234));
+
     }
 }
