@@ -6,6 +6,8 @@ import java.util.List;
 
 public class AlgArrayUtils {
 
+  public static final String charsString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
   public static List<Integer> createIntegerArrayList(String arrayString) {
 
     return Arrays.stream(arrayString.split(" "))
