@@ -1,6 +1,6 @@
 package org.example.EasyAlgorithms;
 
-import org.example.Leetcode.EasyAlgorithms.part1.Solution;
+import org.example.AlgorithmTasks.EasyAlgorithms.part1.Solution;
 import org.junit.Test;
 
 import java.util.ArrayList;

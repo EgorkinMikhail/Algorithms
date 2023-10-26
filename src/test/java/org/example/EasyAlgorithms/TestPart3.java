@@ -1,27 +1,31 @@
 package org.example.EasyAlgorithms;
 
-import org.example.Leetcode.EasyAlgorithms.part3.LinkedListCycle.ListNode;
+import org.example.AlgorithmTasks.EasyAlgorithms.part3.LinkedListCycle.ListNode;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.circularArrayRotation;
-import static org.example.Leetcode.EasyAlgorithms.part3.ArrayRotation.Result.permutationEquation;
-import static org.example.Leetcode.EasyAlgorithms.part3.DesignerPdfViewer.DesignerPdfViewer.designerPdfViewer;
-import static org.example.Leetcode.EasyAlgorithms.part3.GradingStudents.StudentsAndGradesUtil.gradingStudents;
-import static org.example.Leetcode.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
-import static org.example.Leetcode.EasyAlgorithms.part3.LibraryFine.LibraryFine.libraryFine;
-import static org.example.Leetcode.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
-import static org.example.Leetcode.EasyAlgorithms.part3.RepeatedString.RepeatedString.repeatedString;
-import static org.example.Leetcode.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
-import static org.example.Leetcode.EasyAlgorithms.part3.SpecialMultiply.SpecialMultiply.multiply;
-import static org.example.Leetcode.EasyAlgorithms.part3.Stackparcer.ParserUtils.isBalanced;
-import static org.example.Leetcode.EasyAlgorithms.part3.UtopianTree.Part3Utils.*;
-import static org.example.Leetcode.EasyAlgorithms.part3.ViralAdvertising.ViralAdvertisingUtils.viralAdvertising;
-import static org.example.Leetcode.MediumAlgorithms.NonDivisibleSubset.NonDivisibleSubset.nonDivisibleSubset;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ArrayRotation.Result.circularArrayRotation;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ArrayRotation.Result.permutationEquation;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.DesignerPdfViewer.DesignerPdfViewer.designerPdfViewer;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.EqualizeArray.EqualizeArrayTask.equalizeArray;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.GradingStudents.StudentsAndGradesUtil.gradingStudents;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LibraryFine.LibraryFine.libraryFine;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.RepeatedString.RepeatedString.repeatedString;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.SpecialMultiply.SpecialMultiply.multiply;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.Stackparcer.ParserUtils.isBalanced;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.UtopianTree.Part3Utils.*;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ViralAdvertising.ViralAdvertisingUtils.viralAdvertising;
+import static org.example.AlgorithmTasks.MediumAlgorithms.NonDivisibleSubset.NonDivisibleSubset.nonDivisibleSubset;
+import static org.example.utils.AlgArrayUtils.createIntegerArrayList;
 import static org.junit.Assert.*;
 
 
@@ -482,5 +486,43 @@ public class TestPart3 {
         assertEquals(0, multiply(-1, 0));
         assertEquals(0, multiply(0, -234));
 
+    }
+
+    @Test
+    public void testEqualizeArray() {
+
+        // [1, 2, 2, 3]
+        // [3, 3, 1, 2, 3]
+        // [1, 1, 1, 1]
+        // [1, 2, 3, 4, 5]
+        // [1, 1, 4, 2, 4, 4, 1, 1, 1, 2]
+        // [3 3 2 1 1 3]
+        // null
+        // []
+        // [0 -3 2 -1 1 3 1]
+        List<Integer> inputArray = createIntegerArrayList("1 2 2 3");
+        Assert.assertEquals(2, equalizeArray(inputArray));
+
+        inputArray = createIntegerArrayList("3 3 1 2 3");
+        Assert.assertEquals(2, equalizeArray(inputArray));
+
+        inputArray = createIntegerArrayList("1 1 1 1");
+        Assert.assertEquals(0, equalizeArray(inputArray));
+
+        inputArray = createIntegerArrayList("1 2 3 4 5");
+        Assert.assertEquals(4, equalizeArray(inputArray));
+
+        inputArray = createIntegerArrayList("1 1 4 2 4 4 1 1 1 2");
+        Assert.assertEquals(5, equalizeArray(inputArray));
+
+        inputArray = createIntegerArrayList("3 3 2 1 1 3");
+        Assert.assertEquals(3, equalizeArray(inputArray));
+
+        Assert.assertEquals(0, equalizeArray(null));
+
+        Assert.assertEquals(0, equalizeArray(Collections.emptyList()));
+
+        inputArray = createIntegerArrayList("0 -3 2 -1 1 3 1");
+        Assert.assertEquals(5, equalizeArray(inputArray));
     }
 }

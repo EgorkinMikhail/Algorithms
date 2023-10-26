@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.example.Leetcode.EasyAlgorithms.part2.Solution.*;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part2.Solution.*;
 import static org.junit.Assert.assertEquals;
 
 public class TestPart2 {
