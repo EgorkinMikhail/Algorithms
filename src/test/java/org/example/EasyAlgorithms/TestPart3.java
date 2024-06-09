@@ -3,7 +3,15 @@ package org.example.EasyAlgorithms;
 import org.example.AlgorithmTasks.EasyAlgorithms.part3.LinkedListCycle.ListNode;
 import org.junit.Assert;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -524,5 +532,37 @@ public class TestPart3 {
 
         inputArray = createIntegerArrayList("0 -3 2 -1 1 3 1");
         Assert.assertEquals(5, equalizeArray(inputArray));
+    }
+
+    @Test
+    public void test123() {
+
+        String previewPromoteResponse = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ns6:LegalEntity xmlns:ns5=\"urn:co-types.informatica.mdm\" xmlns:ns0=\"urn:cs-rest.informatica.mdm\" xmlns:ns1=\"urn:cs-base.informatica.mdm\" xmlns:ns2=\"urn:co-base.informatica.mdm\" xmlns:ns6=\"urn:co-ors.informatica.mdm\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"ns6:LegalEntity\">   <ns6:LegalEntity label=\"prm_Prv1\">      <ns2:link href=\"/request/hm_icons/hierarchymanager/HospitalGroup/HospitalGroup_Small.png?ors={ors}\" rel=\"icon\"/>      <ns2:link href=\"/request/hm_icons/hierarchymanager/HospitalGroup/HospitalGroup_Small.png?ors={ors}\" rel=\"icon\"/>      <ns2:rowidObject>49032         </ns2:rowidObject>      <ns2:creator>thomas.reichvilser.external@zalando.de</ns2:creator>      <ns2:createDate>2022-06-29T16:19:51.159+02:00</ns2:createDate>      <ns2:updatedBy>admin</ns2:updatedBy>      <ns2:lastUpdateDate>2024-03-04T15:16:08.09+01:00</ns2:lastUpdateDate>      <ns2:consolidationInd>1</ns2:consolidationInd>      <ns2:lastRowidSystem>SAP           </ns2:lastRowidSystem>      <ns2:interactionId>199387229000</ns2:interactionId>      <ns2:hubStateInd>1</ns2:hubStateInd>      <ns6:Party_Type>Legal Entity</ns6:Party_Type>      <ns6:Party_Bus_Key>0004003669</ns6:Party_Bus_Key>      <ns6:VAT_TAX_ID>DE144837194</ns6:VAT_TAX_ID>      <ns6:LegalCountry>DE</ns6:LegalCountry>      <ns6:Name>prm_Prv1</ns6:Name>   </ns6:LegalEntity>   <ns6:changeSummary logging=\"false\" create=\"#/ns6:LegalEntity/ns6:LegalEntity/ns2:link[2]\" xmlns:sdo=\"commonj.sdo\">      <ns6:LegalEntity label=\"prm_Prv\" sdo:ref=\"#/ns6:LegalEntity/ns6:LegalEntity\">         <ns2:link sdo:ref=\"#/ns6:LegalEntity/ns6:LegalEntity/ns2:link[1]\"/>         <ns6:Name>prm_Prv</ns6:Name>         <ns6:KNumber>test_1</ns6:KNumber>      </ns6:LegalEntity>   </ns6:changeSummary></ns6:LegalEntity>";
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new InputSource(new StringReader(previewPromoteResponse)));
+
+            // Get the root element
+            Element root = document.getDocumentElement();
+
+            // Traverse the child nodes of the root
+            NodeList childNodes = root.getChildNodes();
+            for (int i = 0; i < childNodes.getLength(); i++) {
+                Node childNode = childNodes.item(i);
+                System.out.println(childNode.getNodeName());
+                if (childNode.getNodeName().contains("changeSummary")) {
+                    if (childNode.getTextContent() != null &&
+                        childNode.getTextContent().trim().length() > 0) {
+                        System.out.println(true);
+                    }
+                }
+            }
+            System.out.println(false);
+        } catch (Exception e) {
+            System.out.println(false);
+            e.printStackTrace();
+        }
     }
 }
