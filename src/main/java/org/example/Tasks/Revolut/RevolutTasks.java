@@ -1,4 +1,4 @@
-package org.example.Interviews.Revolut;
+package org.example.Tasks.Revolut;
 
 public class RevolutTasks {
 

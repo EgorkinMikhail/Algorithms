@@ -1,4 +1,4 @@
-package org.example.Interviews.Workshop;
+package org.example.Tasks.Workshop;
 
 import org.junit.Test;
 

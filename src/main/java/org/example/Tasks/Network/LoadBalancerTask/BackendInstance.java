@@ -1,4 +1,4 @@
-package org.example.Interviews.Revolut.LoadBalancerTask;
+package org.example.Tasks.Network.LoadBalancerTask;
 
 public class BackendInstance {
 
