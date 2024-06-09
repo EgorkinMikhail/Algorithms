@@ -49,9 +49,14 @@ public class LoadBalancer {
     if (backendInstanceMap.isEmpty()) {
       throw new LoadBalancerException();
     }
+    lock.lock();
+    try {
+      List<String> addressList = new ArrayList<>(backendInstanceMap.keySet());
+      return backendInstanceMap.get(addressList.get(random.nextInt(backendInstanceMap.size()-1)));
+    } finally {
+      lock.unlock();
+    }
 
-    List<String> addressList = new ArrayList<>(backendInstanceMap.keySet());
-    return backendInstanceMap.get(addressList.get(random.nextInt(backendInstanceMap.size()-1)));
   }
 
 
