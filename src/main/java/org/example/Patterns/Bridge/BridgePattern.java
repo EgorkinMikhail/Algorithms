@@ -1,4 +1,4 @@
-package org.example.Patterns;
+package org.example.Patterns.Bridge;
 
 import java.util.*;
 
