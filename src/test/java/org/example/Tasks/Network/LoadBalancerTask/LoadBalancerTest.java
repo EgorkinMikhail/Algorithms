@@ -11,16 +11,22 @@ public class LoadBalancerTest {
   @Test
   public void registerBackendInstance() {
     LoadBalancer loadBalancer = new LoadBalancer();
-    Assert.assertTrue(loadBalancer.registerBackendInstance(new BackendInstance("123.1.2.3")));
+    BackendInstance backendInstance = new BackendInstance();
+    backendInstance.setAddress("https://123.1.2.3");
+    Assert.assertTrue(loadBalancer.registerBackendInstance(backendInstance));
 
   }
 
   @Test
   public void registerDuplicateBackendInstance() {
     LoadBalancer loadBalancer = new LoadBalancer();
+    BackendInstance backendInstance1 = new BackendInstance();
+    backendInstance1.setAddress("https://123.1.2.3");
+    BackendInstance backendInstance2 = new BackendInstance();
+    backendInstance2.setAddress("https://123.1.2.3");
 
-    Assert.assertTrue(loadBalancer.registerBackendInstance(new BackendInstance("123.1.2.3")));
-    Assert.assertFalse(loadBalancer.registerBackendInstance(new BackendInstance("123.1.2.3")));
+    Assert.assertTrue(loadBalancer.registerBackendInstance(backendInstance1));
+    Assert.assertFalse(loadBalancer.registerBackendInstance(backendInstance2));
 
 
   }
@@ -30,10 +36,13 @@ public class LoadBalancerTest {
     LoadBalancer loadBalancer = new LoadBalancer();
 
     for (int i = 0; i < 10; i++) {
-      Assert.assertTrue(loadBalancer.registerBackendInstance(new BackendInstance("123.1.2.".concat(String.valueOf(i)))));
+      BackendInstance backendInstance = new BackendInstance();
+      backendInstance.setAddress("https://123.1.2.".concat(String.valueOf(i)));
+      Assert.assertTrue(loadBalancer.registerBackendInstance(backendInstance));
     }
-
-    Assert.assertThrows(LoadBalancerException.class, () -> loadBalancer.registerBackendInstance(new BackendInstance("123.1.2.sd")));
+    BackendInstance backendInstance = new BackendInstance();
+    backendInstance.setAddress("https://123.1.2.11");
+    Assert.assertThrows(LoadBalancerException.class, () -> loadBalancer.registerBackendInstance(backendInstance));
   }
 
   @Test
@@ -41,7 +50,7 @@ public class LoadBalancerTest {
     LoadBalancer loadBalancer = new LoadBalancer();
 
     Assert.assertThrows(LoadBalancerException.class, () -> loadBalancer.registerBackendInstance(null));
-    Assert.assertThrows(LoadBalancerException.class, () -> loadBalancer.registerBackendInstance(new BackendInstance("")));
+    Assert.assertThrows(LoadBalancerException.class, () -> loadBalancer.registerBackendInstance(new BackendInstance()));
   }
 
   @Test
@@ -50,7 +59,8 @@ public class LoadBalancerTest {
     Map<String, BackendInstance> testMap = new HashMap<>();
 
     for (int i = 0; i < 10; i++) {
-      BackendInstance backendInstance = new BackendInstance("123.1.2.".concat(String.valueOf(i)));
+      BackendInstance backendInstance = new BackendInstance();
+      backendInstance.setAddress("https://123.1.2.".concat(String.valueOf(i)));
       Assert.assertTrue(loadBalancer.registerBackendInstance(backendInstance));
       testMap.put(backendInstance.getAddress(), backendInstance);
     }
@@ -69,7 +79,8 @@ public class LoadBalancerTest {
     Map<String, BackendInstance> testMap = new HashMap<>();
 
     for (int i = 0; i < 10; i++) {
-      BackendInstance backendInstance = new BackendInstance("123.1.2.".concat(String.valueOf(i)));
+      BackendInstance backendInstance = new BackendInstance();
+      backendInstance.setAddress("https://123.1.2.".concat(String.valueOf(i)));
       Assert.assertTrue(loadBalancer.registerBackendInstance(backendInstance));
       testMap.put(backendInstance.getAddress(), backendInstance);
     }

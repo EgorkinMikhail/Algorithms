@@ -24,6 +24,10 @@ public class LoadBalancer {
       throw new LoadBalancerException();
     }
 
+    if (backendInstance.getAddress() == null ) {
+      throw new LoadBalancerException();
+    }
+
     if (backendInstance.getAddress().isBlank() ) {
       throw new LoadBalancerException();
     }
@@ -58,6 +62,5 @@ public class LoadBalancer {
     }
 
   }
-
 
 }
