@@ -7,9 +7,6 @@ public class BackendInstance {
 
   private String address;
 
-  public BackendInstance() {
-  }
-
   public String getAddress() {
     return address;
   }
@@ -20,7 +17,7 @@ public class BackendInstance {
     }
   }
 
-  public boolean validateUrlAddress(String address) {
+  private boolean validateUrlAddress(String address) {
     try {
       new URL(address);
       return true;

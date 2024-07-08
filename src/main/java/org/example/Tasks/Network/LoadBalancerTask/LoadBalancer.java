@@ -8,13 +8,21 @@ public class LoadBalancer {
   private final int maxLoadSize = 10;
   private final Map<String, BackendInstance> backendInstanceMap;
   private Lock lock;
-  Random random;
+  private Random random;
 
 
   public LoadBalancer() {
     backendInstanceMap = new HashMap<>();
     lock = new ReentrantLock();
     random = new Random();
+  }
+
+  public int getCountOfRegisteredInstances() {
+    return backendInstanceMap.size();
+  }
+
+  public Set<String> getSetOfAllInstances() {
+    return backendInstanceMap.keySet();
   }
 
   public boolean registerBackendInstance(BackendInstance backendInstance){
@@ -32,10 +40,11 @@ public class LoadBalancer {
       throw new LoadBalancerException();
     }
 
-    lock.lock();
     try {
+      lock.lock();
       if (backendInstanceMap.keySet().size() == maxLoadSize) {
-        throw new LoadBalancerException();
+        //throw new LoadBalancerException();
+        System.out.println("Balancer is fully loaded");
       } else {
         if (backendInstanceMap.putIfAbsent(backendInstance.getAddress(), backendInstance) == null) {
           returnStatus = true;
@@ -53,8 +62,8 @@ public class LoadBalancer {
     if (backendInstanceMap.isEmpty()) {
       throw new LoadBalancerException();
     }
-    lock.lock();
     try {
+      lock.lock();
       List<String> addressList = new ArrayList<>(backendInstanceMap.keySet());
       return backendInstanceMap.get(addressList.get(random.nextInt(backendInstanceMap.size()-1)));
     } finally {
