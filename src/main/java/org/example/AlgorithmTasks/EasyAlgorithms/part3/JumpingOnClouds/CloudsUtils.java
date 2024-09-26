@@ -1,5 +1,7 @@
 package org.example.AlgorithmTasks.EasyAlgorithms.part3.JumpingOnClouds;
 
+import java.util.List;
+
 public class CloudsUtils {
 
     // Complete the jumpingOnClouds function below.
@@ -24,5 +26,22 @@ public class CloudsUtils {
         }
 
         return energy;
+    }
+
+
+    public static int jumpingOnClouds(List<Integer> c) {
+        // Write your code here
+        int minJumpCounts = 0;
+        for (int i = 0; i < c.size(); i++) {
+            if (i == (c.size() - 1)) return minJumpCounts;
+            if (i == (c.size() - 2)) return ++minJumpCounts;
+            if (c.get(i + 2).equals(0)) {
+                i++;
+                minJumpCounts = minJumpCounts + 1;
+            } else {
+                minJumpCounts = minJumpCounts + 1;
+            }
+        }
+        return minJumpCounts;
     }
 }
