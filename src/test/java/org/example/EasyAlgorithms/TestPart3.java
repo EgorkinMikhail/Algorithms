@@ -23,6 +23,7 @@ import static org.example.AlgorithmTasks.EasyAlgorithms.part3.AcmCup.AcmTeam.dow
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ArrayRotation.Result.circularArrayRotation;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ArrayRotation.Result.permutationEquation;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.CavityMap.CavityMap.cavityMap;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ChocolateFeast.ChocolateFeast.chocolateFeast;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.DesignerPdfViewer.DesignerPdfViewer.designerPdfViewer;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.EqualizeArray.EqualizeArrayTask.equalizeArray;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.FairRations.FairRationsUtils.fairRations;
@@ -610,5 +611,12 @@ public class TestPart3 {
                                        "11100",
                                        "11010",
                                        "00101")));
+  }
+
+  @Test
+  public void chocolateFeastTest() {
+    System.out.println(chocolateFeast(10, 2, 5));
+    System.out.println(chocolateFeast(12, 4, 4));
+    System.out.println(chocolateFeast(6, 2, 2));
   }
 }
