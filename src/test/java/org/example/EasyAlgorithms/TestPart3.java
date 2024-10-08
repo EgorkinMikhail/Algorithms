@@ -12,10 +12,7 @@ import org.xml.sax.InputSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.AcmCup.AcmTeam.acmTeam;
@@ -32,6 +29,7 @@ import static org.example.AlgorithmTasks.EasyAlgorithms.part3.HappyLadybugs.Happ
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LibraryFine.LibraryFine.libraryFine;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LisasWorkbook.LisasWorkbook.workbook;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LongEncodedString.LongEncodedString.decoder;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.RepeatedString.RepeatedString.repeatedString;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
@@ -736,4 +734,24 @@ public class TestPart3 {
     System.out.println(decoder("259(4)11#12#26#(2)"));
     System.out.println(decoder("17911#12#(4)16#20#(2)23#"));
   }
+
+  @Test
+  public void workbookTest() {
+    List<Integer> integerList = Arrays.asList(1, 8, 19, 15, 2, 29, 3, 2, 25, 2, 19, 26, 17, 33, 22);
+//    System.out.println(workbook(15, 20, integerList));
+    List<Integer> integerList2 = Arrays.asList(4,2,6,1,10);
+    System.out.println(workbook(5, 3, integerList2));
+
+  }
 }
+
+// 1 - 1 2 3 // 1
+// 2 - 4
+// 3 - 1 2
+// 4 - 1 2 3
+// 5 - 4 5 6 // 2
+// 6 - 1
+// 7 - 1 2 3
+// 8 - 4 5 6
+// 9 - 7 8 9 // 3
+// 10 - 10 // 4
