@@ -28,16 +28,20 @@ import static org.example.AlgorithmTasks.EasyAlgorithms.part3.DesignerPdfViewer.
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.EqualizeArray.EqualizeArrayTask.equalizeArray;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.FairRations.FairRationsUtils.fairRations;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.GradingStudents.StudentsAndGradesUtil.gradingStudents;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.HappyLadybugs.HappyLadybugs.happyLadybugs;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LibraryFine.LibraryFine.libraryFine;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LinkedListCycle.NodeCycleUtil.hasCycle;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LongEncodedString.LongEncodedString.decoder;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.RepeatedString.RepeatedString.repeatedString;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.SavePrisoner.SaveThePrisonerUtils.saveThePrisoner;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.SpecialMultiply.SpecialMultiply.multiply;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.Stackparcer.ParserUtils.isBalanced;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.UtopianTree.Part3Utils.*;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.ViralAdvertising.ViralAdvertisingUtils.viralAdvertising;
+import static org.example.AlgorithmTasks.MediumAlgorithms.LarrysArray.LarrysArray.larrysArray;
 import static org.example.AlgorithmTasks.MediumAlgorithms.NonDivisibleSubset.NonDivisibleSubset.nonDivisibleSubset;
+import static org.example.AlgorithmTasks.MediumAlgorithms.TheTimeInWords.TheTimeInWords.timeInWords;
 import static org.example.utils.AlgArrayUtils.createIntegerArrayList;
 import static org.junit.Assert.*;
 
@@ -618,5 +622,118 @@ public class TestPart3 {
     System.out.println(chocolateFeast(10, 2, 5));
     System.out.println(chocolateFeast(12, 4, 4));
     System.out.println(chocolateFeast(6, 2, 2));
+  }
+
+  @Test
+  public void theTimeInWordsTest() {
+    System.out.println(timeInWords(1, 15));
+    System.out.println(timeInWords(0, 45));
+    System.out.println(timeInWords(5, 1));
+    System.out.println(timeInWords(4, 5));
+    System.out.println(timeInWords(7, 3));
+    System.out.println(timeInWords(2, 0));
+    System.out.println(timeInWords(2, 37));
+    System.out.println(timeInWords(2, 30));
+    System.out.println(timeInWords(5, 45));
+  }
+
+  @Test
+  public void happyLadybugsTest() {
+//    System.out.println(happyLadybugs("_FWYSSENEDBO_KSEVUAB_WZ_GASASVEVS_O_NSVBYFNADE_WWVSBKAE_F_VAS_F_AAAEWBE_WEAEOAYV"));
+//    System.out.println(happyLadybugs("ZBF_MIFUXJNQGQRFZVRQUFFFFNGFIBJ_XZVIRFGMJRJFVMNJMF"));
+//    System.out.println(happyLadybugs("YFCA_NXMGJYYGCMMGGGXYNAMFNJJX_"));
+//    System.out.println(happyLadybugs("CBLJUKUWSTIIUKUBQSITSULTJKCUSKBCKB"));
+//    System.out.println(happyLadybugs("A_TOJRPRW__JOJP__WAJT"));
+//    System.out.println(happyLadybugs("E__TZJTD_OYGFM__QKZD_LJL_TJ_YED__DETFFYGJQ_T_JJZDJFMQO___T_JTQGKDTT_ET"));
+//    System.out.println(happyLadybugs("_PMBBIK_THVEQPN_RHSUP__BI_R_HP_PTEHPRHBKVBN_SQKNB_NVRB_PMBUNT"));
+//    System.out.println(happyLadybugs("Q_ZEUKWDG_Q_VEE_Z_PDDDEEP_PVDVVGZUEU_Q_"));
+//    System.out.println(happyLadybugs("__MY_T_C_FY_USSALD_U_AIEJRPVNUA_TI_CAYTE__EPI_FDLMA_U_CC_AAUAVNUSJYAUD_AP_CIA_D_E__TAUSU_N"));
+//    System.out.println(happyLadybugs("LXA__KNR_R___CJJLF_IJPFLRM__V_FAAN_JU__RJ__RFMJ_PP_L__R_RR___AJLJ_LKIAP_LX___L_FACFJXRC_L"));
+//    System.out.println(happyLadybugs("I_S_AHBBZJLQDKQZXIG_TOC_BGQMQVTEWAAWIBL_MKJQQGSZIBWSQQ__K_HEHZZZG_BBCEJOWIGCGQTBQ_Z_DHGAIQ_____LVA_"));
+//    System.out.println(happyLadybugs("OADXPZXDAXXPDOPBPB"));
+    System.out.println(happyLadybugs("IIIAAC"));
+//    System.out.println(happyLadybugs("P_QUVFTC_T_A_ST_Y__T_AQ_TTTYATTIAYUUV_U_TPP_A_T_AFT"));
+//    System.out.println(happyLadybugs("VAKZIIPDVVKT__BWMY_IQFNXRZR_FTZKDNMVZRMRP_IFFFPKKRWBBXTVVZKTAV_RRKKV__I__MB_K_KVYVMIP"));
+//    System.out.println(happyLadybugs("_YYYDC_P_B_RBNW_QKVD_EVXZQVYEYRVCY_EXVYYNY_Z_BVBVE_ZXZ_DBBVYB_BWVR_X_YRB___B"));
+//    System.out.println(happyLadybugs("BWDXDZUXXVSH_MLOIC_SDXDIBDDHBUCBS_D_WZHMDWSX_DMZVD_MHX_LB_"));
+//    System.out.println(happyLadybugs("__B_MODTKB__DM__BOB__VBVMD_OB"));
+//    System.out.println(happyLadybugs("MZSVIFE_CZSSI_EESIMSZZEMZMIICCF"));
+//    System.out.println(happyLadybugs("_ELSXLM_Z_RZBOBMEIABC_VZQ_X__RSXWW__BZZMMXZW_C__RV__EB_S_VEIEX_IR__AWBSRXOCXE_B_X__Z__SXC_AZCC_OABS"));
+//    System.out.println(happyLadybugs("WKQPNY_MJTQ_V_YEO__PXICOB_TPKK_P_MQQOPYP_NVNIPYYIQVPPYEXSY_Y_K_YQJQYWQ_POY__P_PEQITKQBYPIQE"));
+//    System.out.println(happyLadybugs("E_LBAI_YCXSF_GQL_PHTXLQOWXBBEYBLXBXLQLEBBGSLFYBCQFIE_XX_LX_B_BSPQXSOTQQLP_QP_QP__BFCSSBT"));
+//    System.out.println(happyLadybugs("RHLP_KS_HADGELHPE_FCKEPHF_HHGRHHXXLFHEXCFR_XKDPPH_CPGGEDK_E_P"));
+//    System.out.println(happyLadybugs("KWNGPWHQDVSXICSPE_OJQSBLKOERBR_GSBENDPBKOGJPPQCEXG_BRKGCP_KW_HWIN_KLOWROPREKHEWRWHEQSQ_RXSBJIBESS"));
+//    System.out.println(happyLadybugs("L_OTJQXNPRHL_MLQQC_HTQDNNPQ_PCTJHQQ_M_DLHKT_NCXH_TLQLCH_Q_POTMORQLTQR_HM"));
+//    System.out.println(happyLadybugs("PHMWXXPWWXWWXHW"));
+//    System.out.println(happyLadybugs("ZF__KSHMNOILMFIMFHFM_ZNIMLFHLNOLZNM"));
+//    System.out.println(happyLadybugs("XRLSCLXCXSSSSLXX"));
+//    System.out.println(happyLadybugs("_F_FDZ_KK_D_ZZFF__FFKK_Z"));
+//    System.out.println(happyLadybugs("DMMQ___KOKOOL_KMD_OMMM__M_DOQ_K_QK"));
+//    System.out.println(happyLadybugs("AGUPF__PGFP_AFKGFUFUAP_"));
+//    System.out.println(happyLadybugs("GY_KGOFTBLOZRSGGZOFTTBFTFTBZ_Y_ORYLZOGGSLTF"));
+//    System.out.println(happyLadybugs("A_E_W_UMARGHHGUPASDKYRF_URHYEFURYA_F_HHHD__HARREASEY__A__UADHKURFSRRM_GGAAM_SRHRP"));
+//    System.out.println(happyLadybugs("N_JG__XYED_RXHRX_J_XNXGDYDE_GJ_E__H_X"));
+//    System.out.println(happyLadybugs("FVIVAZ_QDZRPICRMUPZWGDAEEI_I_WZQZWGMZP_IIIPEUCVRZWAZIIZEQIIIDCP_AAZZPWRIGWWAAR_DFUDZZ_V_MWZ"));
+//    System.out.println(happyLadybugs("KTXODXKXDXXDDOXX"));
+//    System.out.println(happyLadybugs("CZCYAV_ICVCYCCIDDZID_AAZC"));
+//    System.out.println(happyLadybugs("__XWTZXUWVT__H_PUGHZ_G___H_GZWTTWGZ_XHHZWGXZWGPV_U_UWXV"));
+  }
+
+  @Test
+  public void larrysArrayTest() {
+    List<Integer> A = new ArrayList<>();
+    A.add(1); // 1,6,5,2,4,3]
+    A.add(6);
+    A.add(5);
+    A.add(2);
+    A.add(4);
+    A.add(3);
+    System.out.println(larrysArray(A));
+
+    List<Integer> B = new ArrayList<>();
+    B.add(3);
+    B.add(1);
+    B.add(2);
+    System.out.println(larrysArray(B));
+
+    List<Integer> C = new ArrayList<>();
+    C.add(1);
+    C.add(3);
+    C.add(4);
+    C.add(2);
+    System.out.println(larrysArray(C));
+
+    List<Integer> D = new ArrayList<>();
+    D.add(1);
+    D.add(2);
+    D.add(3);
+    D.add(5);
+    D.add(4);
+    System.out.println(larrysArray(D));
+
+    List<Integer> E = new ArrayList<>();
+    E.add(8);
+    E.add(10);
+    E.add(6);
+    E.add(11);
+    E.add(7);
+    E.add(1);
+    E.add(9);
+    E.add(12);
+    E.add(3);
+    E.add(5);
+    E.add(13);
+    E.add(4);
+    E.add(2);
+    System.out.println(larrysArray(E));
+  }
+
+
+  @Test
+  public void LongEncodedStringDecoderTest() {
+    System.out.println(decoder("1235(4)20#(2)"));
+    System.out.println(decoder("12(3)35(7)22#(3)"));
+    System.out.println(decoder("259(4)11#12#26#(2)"));
+    System.out.println(decoder("17911#12#(4)16#20#(2)23#"));
   }
 }
