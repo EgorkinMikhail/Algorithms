@@ -2,36 +2,47 @@ package org.example.AlgorithmTasks.EasyAlgorithms.part3.LongEncodedString;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class LongEncodedString {
 // Hackerrank Long Encoded String
+public class LongEncodedString {
+
   public static List<Integer> decoder(String s) {
-    List<Integer> values = new ArrayList<>();
+    List<Integer> values = new ArrayList<>(26);
 
     for (int i = 0; i < 26; i++) {
       values.add(0);
     }
-    for (int i = 0; i < s.length(); i++) {
-      if ((i + 1 < s.length()) && s.charAt(i + 1) == '(') {
-        values.set(Integer.parseInt(String.valueOf(s.charAt(i))) - 1, Integer.parseInt(s.substring(i + 2, s.indexOf(')', i + 2))));
-        i = i + s.substring(i, s.indexOf(')', i)).length();
-        continue;
+
+    int i = 0;
+    while (i < s.length()) {
+      //
+      if (i + 1 < s.length() && s.charAt(i + 1) == '(') {
+        int index = Character.getNumericValue(s.charAt(i)) - 1;
+        int endParenIndex = s.indexOf(')', i + 2);
+        int frequency = Integer.parseInt(s.substring(i + 2, endParenIndex));
+        values.set(index, frequency);
+        i = endParenIndex + 1;
       }
-      if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
+      //
+      else if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
+        int index = Integer.parseInt(s.substring(i, i + 2)) - 1;
         if (i + 3 < s.length() && s.charAt(i + 3) == '(') {
-          values.set(Integer.parseInt(s.substring(i, i  + 2)) - 1, Integer.parseInt(s.substring(i + 4, s.indexOf(')', i + 4))));
-          i = i + s.substring(i, s.indexOf(')', i)).length();
+          int endParenIndex = s.indexOf(')', i + 4);
+          int frequency = Integer.parseInt(s.substring(i + 4, endParenIndex));
+          values.set(index, frequency);
+          i = endParenIndex + 1;
         } else {
-          values.set(Integer.parseInt(s.substring(i, i  + 2)) - 1, 1);
-          i = i + 2;
+          values.set(index, 1);
+          i += 3;
         }
-        continue;
       }
-      int value = Integer.parseInt(String.valueOf(s.charAt(i)));
-      values.set(value - 1, 1);
+      // Обработка одиночных чисел без скобок
+      else {
+        int index = Character.getNumericValue(s.charAt(i)) - 1;
+        values.set(index, 1);
+        i++;
+      }
     }
 
     return values;
   }
-
 }
