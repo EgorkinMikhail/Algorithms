@@ -25,6 +25,7 @@ import static org.example.AlgorithmTasks.EasyAlgorithms.part3.DesignerPdfViewer.
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.EqualizeArray.EqualizeArrayTask.equalizeArray;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.FairRations.FairRationsUtils.fairRations;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.GradingStudents.StudentsAndGradesUtil.gradingStudents;
+import static org.example.AlgorithmTasks.EasyAlgorithms.part3.HalloweenSale.HalloweenSale.howManyGames;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.HappyLadybugs.HappyLadybugs.happyLadybugs;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.JumpingOnClouds.CloudsUtils.jumpingOnClouds;
 import static org.example.AlgorithmTasks.EasyAlgorithms.part3.LibraryFine.LibraryFine.libraryFine;
@@ -743,15 +744,9 @@ public class TestPart3 {
     System.out.println(workbook(5, 3, integerList2));
 
   }
-}
 
-// 1 - 1 2 3 // 1
-// 2 - 4
-// 3 - 1 2
-// 4 - 1 2 3
-// 5 - 4 5 6 // 2
-// 6 - 1
-// 7 - 1 2 3
-// 8 - 4 5 6
-// 9 - 7 8 9 // 3
-// 10 - 10 // 4
+  @Test
+  public void howManyGamesTest() {
+    System.out.println(howManyGames(20, 3, 6, 70));
+  }
+}
