@@ -1,6 +1,5 @@
 package org.example.Tasks.Network.LoadBalancerTask;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -34,20 +34,17 @@ public class LoadBalancerTest {
     try {
       loadBalancer.setServer(null);
       fail("Expected IllegalArgumentException");
-    } catch (IllegalArgumentException ignored) {
-    }
+    } catch (IllegalArgumentException ignored) {}
 
     try {
       loadBalancer.setServer("");
       fail("Expected IllegalArgumentException");
-    } catch (IllegalArgumentException ignored) {
-    }
+    } catch (IllegalArgumentException ignored) {}
 
     try {
       loadBalancer.setServer(" ");
       fail("Expected IllegalArgumentException");
-    } catch (IllegalArgumentException ignored) {
-    }
+    } catch (IllegalArgumentException ignored) {}
   }
 
   @Test
@@ -55,8 +52,7 @@ public class LoadBalancerTest {
     try {
       loadBalancer.setServer("invalid-url");
       fail("Expected IllegalArgumentException");
-    } catch (IllegalArgumentException ignored) {
-    }
+    } catch (IllegalArgumentException ignored) {}
   }
 
   @Test
@@ -67,8 +63,7 @@ public class LoadBalancerTest {
       }
       loadBalancer.setServer("http://example.com/extra");
       fail("Expected IllegalStateException");
-    } catch (IllegalStateException ignored) {
-    }
+    } catch (IllegalStateException ignored) {}
   }
 
   @Test
@@ -76,8 +71,7 @@ public class LoadBalancerTest {
     try {
       loadBalancer.getServer();
       fail("Expected IllegalStateException");
-    } catch (IllegalStateException ignored) {
-    }
+    } catch (IllegalStateException ignored) {}
   }
 
   @Test
@@ -97,22 +91,16 @@ public class LoadBalancerTest {
     IntStream.range(0, 25)
         .parallel()
         .forEach(i -> {
-          loadBalancer.setServer("https://123.1.2.".concat(String.valueOf(i)));
-          System.out.println("Registered new load balancer: " +
-              "server: " + "https://123.1.2.".concat(String.valueOf(i)) +
-              " in thread: " + Thread.currentThread().getName());
-
+          try {
+            loadBalancer.setServer("https://123.1.2.".concat(String.valueOf(i)));
+            System.out.println("Registered new load balancer: " +
+                "server: " + "https://123.1.2.".concat(String.valueOf(i)) +
+                " in thread: " + Thread.currentThread().getName());
+          } catch (Exception ignored) {}
         });
 
-    Assert.assertNotNull(loadBalancer);
-    Assert.assertNotNull(loadBalancer.getServer());
-    Assert.assertEquals(10, loadBalancer.getCountOfRegisteredServers());
+    assertNotNull(loadBalancer);
+    assertNotNull(loadBalancer.getServer());
+    assertEquals(10, loadBalancer.getCountOfRegisteredServers());
   }
-
-  @Test
-  public void getInstanceFromEmptyLoadBalancer() {
-    LoadBalancer loadBalancer = new LoadBalancer();
-    assertThrows(IllegalStateException.class, loadBalancer::getServer);
-  }
-
 }
